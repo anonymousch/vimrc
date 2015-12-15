@@ -268,13 +268,13 @@ highlight Pmenu    guibg=darkgrey  guifg=black
 highlight PmenuSel guibg=lightgrey guifg=black
 
 "author info
-let g:vimrc_author='Xue Ning'
-let g:vimrc_email='ning.xue@meelive.cn'
+let g:vimrc_author='Ruichao Liu'
+let g:vimrc_email='ruichao.liu@meelive.cn'
 let g:vimrc_homepage='http://www.meelive.cn'
 
 
 "doxygen setting
-let g:DoxygenToolkit_authorName="Xue Ning, ning.xue@meelive.cn"
+let g:DoxygenToolkit_authorName="Ruichao Liu, ruichao.liu@meelive.cn"
 let s:licenseTag = "Copyright(C)\<enter>"
 let s:licenseTag = s:licenseTag . "For free\<enter>"
 let s:licenseTag = s:licenseTag . "All right reserved\<enter>"
@@ -412,7 +412,7 @@ nnoremap <silent> <F8> :NERDTreeToggle<CR>
 map <F10> :!ctags -R --c++-kinds=+p --fields=+iaS --extra=+q --language-force=C++ .<CR>
 
 "add author info
-nmap <F4> :AuthorInfoDetect<cr>
+nmap <C-u> :AuthorInfoDetect<cr>
 "add doc
 nmap <F3> :Dox <cr>
 nmap <F2> :ConqueTermVSplit
