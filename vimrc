@@ -1,70 +1,68 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/Vundle.vim'
+set rtp+=~/.vim/bundle/vim-plug
+call plug#begin('~/.vim/bundle')
 
-Plugin 'a.vim'
-Plugin 'DoxygenToolkit.vim'
-Plugin 'omasr/molokai'
+Plug 'gmarik/Vundle.vim'
+
+Plug 'a.vim'
+Plug 'DoxygenToolkit.vim'
+Plug 'tomasr/molokai'
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
 ""plugin
-Plugin 'auto_mkdir'
-Plugin 'TagHighlight'
-Plugin 'auto-pairs'
-Plugin 'cuteErrorMarker'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'tpope/vim-repeat'
-Plugin 'indent-motion'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/nerdtree'
-Plugin 'OmniCppComplete'
-Plugin 'vim-airline'
-Plugin 'surround.vim'
-Plugin 'majutsushi/tagbar'
-Plugin 'tlib'
-Plugin 'indentLine.vim'
-Plugin 'project.tar.gz'
-Plugin 'Pydiction'
-Plugin 'fatih/vim-go'
-Plugin 'L9'
-"Plugin 'FuzzyFinder'
-Plugin 'vim-orgmode'
-Plugin 'speeddating.vim'
-Plugin 'dantezhu/authorinfo'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'scrooloose/syntastic'
-Plugin 'Chiel92/vim-autoformat'
-Plugin 'kien/rainbow_parentheses.vim'
-Plugin 'junegunn/vim-easy-align'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'vim-scripts/matchit.zip'
+Plug 'auto_mkdir'
+Plug 'TagHighlight'
+Plug 'auto-pairs'
+Plug 'cuteErrorMarker'
+Plug 'easymotion/vim-easymotion'
+Plug 'tpope/vim-repeat'
+Plug 'indent-motion'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'OmniCppComplete'
+Plug 'vim-airline'
+Plug 'surround.vim'
+Plug 'majutsushi/tagbar'
+Plug 'tlib'
+Plug 'indentLine.vim'
+Plug 'project.tar.gz'
+Plug 'Pydiction'
+Plug 'fatih/vim-go'
+Plug 'L9'
+"Plug 'FuzzyFinder'
+Plug 'vim-orgmode'
+Plug 'speeddating.vim'
+Plug 'dantezhu/authorinfo'
+Plug 'Valloric/YouCompleteMe'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'plasticboy/vim-markdown'
+Plug 'scrooloose/syntastic'
+Plug 'frtmelody/vim-autoformat'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'junegunn/vim-easy-align'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'vim-scripts/matchit.zip'
 "Git
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'tpope/vim-fugitive'
-Plugin 'mhinz/vim-signify'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
 "cloorcheme
-Plugin 'flazz/vim-colorschemes'
+Plug 'flazz/vim-colorschemes'
 "svn
-Plugin 'git://repo.or.cz/vcscommand'
+Plug 'git://repo.or.cz/vcscommand'
 " 等号对齐
-Plugin 'godlygeek/tabular'
+Plug 'godlygeek/tabular'
 
 "ctrlp
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'tacahiroy/ctrlp-funky'
 
-Plugin 'mileszs/ack.vim'
-Plugin 'rizzatti/dash.vim'
+Plug 'mileszs/ack.vim'
+Plug 'rizzatti/dash.vim'
 
-call vundle#end()            " required
+call plug#end()
 " General Settings
 
 set laststatus=2   " Always show the statusline
@@ -321,6 +319,8 @@ let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 "let g:syntastic_auto_jump = 1
+"
+let g:autoformat_autoindent = 0
 
 
 
@@ -330,8 +330,8 @@ let g:EasyMotion_do_mapping = 0 " Disable default mappings
 let g:EasyMotion_smartcase = 1
 
 "auto formater
-au BufWrite * :Autoformat
-au BufWrite * :SyntasticCheck
+au BufWritePre * :Autoformat 
+au BufWritePost * :SyntasticCheck
 let g:formatters_c = ['astyle_c']
 let g:formatdef_astyle_c = '"astyle --mode=c -A2 -f -S -p -k1 -v -U -H -N -M -w -L -s4 -o"'
 let g:formatters_cpp = ['astyle_cpp']
