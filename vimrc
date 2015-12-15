@@ -404,6 +404,15 @@ nmap <leader>/ :nohl<CR>
 vnoremap < <gv
 vnoremap > >gv
 
+map <leader>g :call IncludeGuard()<CR>
+fun! IncludeGuard()
+    let basename = substitute(bufname(""), '.*/', '', '')
+    let guard = '_' . substitute(toupper(basename), '\.', '_', "H")
+    call append(0, "#ifndef " . guard)
+    call append(1, "#define " . guard)
+    call append( line("$"), "#endif // for #ifndef " . guard)
+endfun
+
 "tagbar
 nnoremap <silent> <F7> :TagbarToggle<CR>
 nnoremap <silent> <F8> :NERDTreeToggle<CR>
