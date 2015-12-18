@@ -4,4 +4,5 @@
 ```
 cd ~/.vim
 git sumodule update --init
+PlugInstall
 ```
