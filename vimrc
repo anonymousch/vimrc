@@ -89,7 +89,7 @@ set nu
 set mouse=h
 set title
 set magic
-
+set cc=80
 
 
 filetype on           " Enable filetype detection
