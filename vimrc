@@ -252,7 +252,7 @@ set path+=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/../../../../include/c++/4.4.7/b
 set path+=/usr/local/include
 set path+=/usr/lib/gcc/x86_64-redhat-linux/4.4.7/include
 set path+=/usr/include
-set path+=~/svnprojects/include
+set path+=~/svn/include
 
 "
 "OmniCppComplete
