@@ -41,7 +41,9 @@ Plug 'honza/vim-snippets'
 Plug 'plasticboy/vim-markdown'
 Plug 'scrooloose/syntastic'
 Plug 'frtmelody/vim-autoformat'
+
 Plug 'kien/rainbow_parentheses.vim'
+
 Plug 'junegunn/vim-easy-align'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'vim-scripts/matchit.zip'
@@ -70,7 +72,10 @@ Plug 'derekwyatt/vim-fswitch'
 " vim 终端
 Plug 'frtmelody/conque'
 "快速选中结对
-Plug 'frtmelody/vim-expand-region'
+Plug 'gcmt/wildfire.vim'
+
+" undo
+Plug 'sjl/gundo.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
@@ -127,6 +132,7 @@ set t_Co=256
 "colorscheme solarized
 colorscheme molokai
 let g:rehash256 = 1
+let g:molokai_original = 1
 
 "let g:airline_section_b = '%{strftime("%d")}'
 "let g:airline#extensions#tabline#enabled = 1
@@ -238,6 +244,7 @@ hi link EasyMotionShade  Comment
 " --- TagBar
 " toggle TagBar with F7
 let NERDTreeQuitOnOpen = 0
+let g:tagbar_width = 25
 " set focus to TagBar when opening it
 let g:tagbar_autofocus = 0
 
@@ -496,6 +503,15 @@ vmap <Leader>a,, :Tabularize /,\zs<CR>
 nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
 
-"expand-region
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
+" This selects the next closest text object.
+map <SPACE> <Plug>(wildfire-fuel)
+" This selects the previous closest text object.
+vmap <C-SPACE> <Plug>(wildfire-water)
+
+nnoremap <Leader>u :GundoToggle<CR>
+
+"彩色括弧
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
