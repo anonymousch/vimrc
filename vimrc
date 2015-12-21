@@ -31,7 +31,7 @@ Plug 'project.tar.gz'
 Plug 'Pydiction'
 Plug 'fatih/vim-go'
 Plug 'L9'
-"Plug 'FuzzyFinder'
+Plug 'FuzzyFinder'
 Plug 'vim-orgmode'
 Plug 'speeddating.vim'
 Plug 'dantezhu/authorinfo'
@@ -369,7 +369,8 @@ let g:ctrlp_funky_syntax_highlight = 1
 let g:ctrlp_working_path_mode = 'ra'
 
 " synatistic
-let g:syntastic_error_symbol = '✗'
+"let g:syntastic_error_symbol = '✗'
+let g:syntastic_error_symbol = '➜'
 let g:syntastic_warning_symbol = '⚠'
 "
 
