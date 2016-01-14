@@ -79,6 +79,8 @@ Plug 'sjl/gundo.vim'
 
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+Plug 'ivanov/vim-ipython'
+
 call plug#end()
 " General Settings
 
@@ -95,6 +97,15 @@ set mouse=h
 set title
 set magic
 set cc=80
+set titleold = "
+
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 
 filetype on           " Enable filetype detection
@@ -117,6 +128,32 @@ function! VisualSearch(direction) range
     let @" = l:saved_reg
 endfunction
 
+if exists('$TMUX')
+    set term=screen-256color
+endif
+
+"使用粘贴的时候 禁止缩进
+function! WrapForTmux(s)
+  if !exists('$TMUX')
+    return a:s
+  endif
+
+  let tmux_start = "\<Esc>Ptmux;"
+  let tmux_end = "\<Esc>\\"
+
+  return tmux_start . substitute(a:s, "\<Esc>", "\<Esc>\<Esc>", 'g') . tmux_end
+endfunction
+
+let &t_SI .= WrapForTmux("\<Esc>[?2004h")
+let &t_EI .= WrapForTmux("\<Esc>[?2004l")
+
+function! XTermPasteBegin()
+  set pastetoggle=<Esc>[201~
+  set paste
+  return ""
+endfunction
+
+inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
 
 " auto reload vimrc when editing it
 autocmd! bufwritepost .vimrc source ~/.vimrc
@@ -515,3 +552,10 @@ au VimEnter * RainbowParenthesesToggle
 au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
+
+"ipython support
+
+"reselect = False            " reselect lines after sending from Visual mode
+"show_execution_count = True " wait to get numbers for In[43]: feedback?
+"monitor_subchannel = True   " update vim-ipython 'shell' on every send?
+"run_flags= "-i"             " flags to for IPython's run magic when using <F5>
