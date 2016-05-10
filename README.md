@@ -3,6 +3,6 @@
 ## 安装 
 ```
 cd ~/.vim
-git sumodule update --init
+git submodule update --init
 PlugInstall
 ```
